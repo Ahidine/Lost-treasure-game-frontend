@@ -1,10 +1,13 @@
 import React from "react";
+import AppRoutes from "./routes/AppRoutes";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>React TypeScript App</h1>
-    </div>
+    <Provider store={store}>
+      <AppRoutes />
+    </Provider>
   );
 };
 
