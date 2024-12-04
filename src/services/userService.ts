@@ -4,7 +4,7 @@ import api from "./api";
 export class UserService {
   async registerUser(name: string, email: string, password: string) {
     try {
-      const response = await api.post("/auth/register", {
+      const response = await api.post("/api/auth/register", {
         name,
         email,
         password,
@@ -17,7 +17,7 @@ export class UserService {
 
   async loginUser(email: string, password: string) {
     try {
-      const response = await api.post("/auth/login", { email, password });
+      const response = await api.post("/api/auth/login", { email, password });
       return response.data;
     } catch (err) {
       throw new Error((err as Error).message);
@@ -26,7 +26,7 @@ export class UserService {
 
   async addTreasure(id: string, treasure: Treasure) {
     try {
-      const response = await api.post(`/users/${id}/rewards`, treasure);
+      const response = await api.post(`/api/users/${id}/rewards`, treasure);
       return response.data;
     } catch (err) {
       throw new Error((err as Error).message);
