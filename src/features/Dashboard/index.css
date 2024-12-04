@@ -1,0 +1,106 @@
+.dashboard {
+  background: linear-gradient(135deg, #e99230, #2584a5);
+  color: white;
+  padding: 2rem;
+  height: 91vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Arial", sans-serif;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.level-progress {
+  width: 80%;
+  margin: 1rem 0;
+  background: #fff;
+  border-radius: 5px;
+  height: 10px;
+}
+
+.progress-bar {
+  background: #f8d568;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.motivational-message {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #531206;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.motivational-message h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.motivational-message p {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.start-new-game {
+  background: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.start-new-game:hover {
+  background: #0056b3;
+}
+
+.treasures-found {
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.treasure-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.treasure-item {
+  background: #531206;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.treasure-icon {
+  margin-bottom: 0.5rem;
+}
+
+.treasure-info h3 {
+  color: #f8d568;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+footer .start-new-game {
+  font-size: 1.5rem;
+}
