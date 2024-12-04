@@ -1,0 +1,25 @@
+.play-button {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #f2fdfe;
+  background: transparent;
+  border: 3px solid #0fccdf;
+  border-radius: 10px;
+  padding: 15px 40px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 0 20px #0fccdf, inset 0 0 10px #0fccdf;
+  transition: transform 0.3s, box-shadow 0.3s;
+  background-color: #0fccdf;
+}
+
+.play-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px #f8d568, inset 0 0 15px #0fccdf;
+}
+
+.play-button:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #f8d568, inset 0 0 5px #f8d568;
+}
