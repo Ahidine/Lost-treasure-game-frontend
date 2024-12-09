@@ -117,7 +117,7 @@ export const useGameLogic = () => {
         tries: newTries,
         ...(newTries >= 3 && {
           showModal: true,
-          selectedAction: modalActions.lost,
+          selectedAction: { ...modalActions.lost, action: startNewGame },
         }),
       }));
     }
