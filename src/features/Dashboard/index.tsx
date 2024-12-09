@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaTrophy, FaCalendarAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import motivationImage from "../../assets/motivation.png";
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ const Dashboard: React.FC = () => {
       </header>
 
       {user.treasures.length === 0 && (
-        <section className="motivational-message">
+        <section
+          className={`motivational-message ${
+            user.treasures.length === 0 ? "visible" : ""
+          }`}
+        >
           <h2>Pas encore de trésor trouvé... 😔</h2>
           <p>
             Chaque grande aventure commence par un petit pas. Vous n'avez pas
@@ -44,12 +49,9 @@ const Dashboard: React.FC = () => {
             🏃‍♂️💨 Lancez-vous et découvrez ce qui se cache derrière les cartes !
             🎲
           </p>
-          <p>
-            Dans un royaume lointain, un aventurier inconnu se lance à la
-            recherche du plus grand trésor jamais découvert. Pour ce héros,
-            chaque carte retournée est une étape vers une découverte magique. ✨
-            Vous êtes prêt pour votre aventure ? 🔍
-          </p>
+          <div className="searching-image">
+            <img src={motivationImage} alt="Recherche de trésor" />
+          </div>
         </section>
       )}
 

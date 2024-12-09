@@ -68,3 +68,9 @@
 .toggle-text:hover {
   color: #0056b3;
 }
+.error-message {
+  color: red !important;
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 10px;
+}

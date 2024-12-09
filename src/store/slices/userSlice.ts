@@ -74,6 +74,7 @@ const userSlice = createSlice({
       state.isAuthenticated = false;
       state.token = null;
       localStorage.removeItem("userToken");
+      localStorage.removeItem("userSession");
     },
     loadSession: (state) => {
       const session = localStorage.getItem("userSession");
@@ -95,6 +96,7 @@ const userSlice = createSlice({
         state.name = action.payload.user.name;
         state.email = action.payload.user.email;
         state.token = action.payload.token;
+        state.treasures = action.payload.user.treasures;
         localStorage.setItem("userSession", JSON.stringify(state));
         localStorage.setItem("userToken", action.payload.token);
       })
@@ -104,6 +106,7 @@ const userSlice = createSlice({
       })
       .addCase(login.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.loading = false;

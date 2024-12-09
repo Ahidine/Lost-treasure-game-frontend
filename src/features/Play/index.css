@@ -1,5 +1,5 @@
 .play-content {
-  height: 91vh;
+  height: 100vh;
   background: linear-gradient(135deg, #e99230, #2584a5),
     radial-gradient(circle at center, rgba(255, 215, 0, 0.3), transparent);
   position: relative;
@@ -8,7 +8,8 @@
   justify-content: flex-start;
   padding: 2rem;
   color: white;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
   background-blend-mode: overlay;
 }
 
@@ -51,4 +52,24 @@
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .play-content {
+    padding: 1rem;
+  }
+
+  .card {
+    flex: 1 1 calc(45% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    flex: 1 1 calc(100% - 10px);
+  }
+
+  .cards-container {
+    gap: 5px;
+  }
 }

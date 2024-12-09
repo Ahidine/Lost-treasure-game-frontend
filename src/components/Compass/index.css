@@ -1,5 +1,8 @@
 .compass {
   position: absolute;
+  top: 1%;
+  left: 8%;
+  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +10,6 @@
   height: 120px;
   border: 2px solid #ccc;
   border-radius: 50%;
-  margin: 0 auto 20px; /* Center it and add spacing */
   background: linear-gradient(135deg, #2584a5, #e99230);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
@@ -36,4 +38,33 @@
 
 .compass-west {
   left: 10px;
+}
+
+@media (max-width: 900px) {
+  .compass {
+    width: 90px;
+    height: 90px;
+  }
+
+  .compass-north,
+  .compass-south,
+  .compass-east,
+  .compass-west {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .compass {
+    width: 50px;
+    height: 50px;
+    top: 1%;
+  }
+
+  .compass-north,
+  .compass-south,
+  .compass-east,
+  .compass-west {
+    font-size: 0.4rem;
+  }
 }

@@ -2,12 +2,13 @@
   background: linear-gradient(135deg, #e99230, #2584a5);
   color: white;
   padding: 2rem;
-  height: 91vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   font-family: "Arial", sans-serif;
+  height: 100%;
+  overflow: auto;
 }
 
 .dashboard-header {
@@ -21,7 +22,7 @@
 }
 
 .level-progress {
-  width: 80%;
+  width: 100%;
   margin: 1rem 0;
   background: #fff;
   border-radius: 5px;
@@ -36,13 +37,18 @@
 
 .motivational-message {
   text-align: center;
-  margin-bottom: 2rem;
-  padding: 1.5rem;
+  margin: 0;
+  padding: 2rem 1.5rem;
   background-color: #531206;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  max-width: 100%;
+  flex-grow: 1;
 }
-
+.motivational-message.visible {
+  opacity: 1;
+  height: auto;
+}
 .motivational-message h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -70,7 +76,7 @@
 
 .treasures-found {
   width: 80%;
-  margin-bottom: 2rem;
+  margin: 2rem 0;
 }
 
 .treasure-list {
@@ -103,4 +109,20 @@ footer {
 
 footer .start-new-game {
   font-size: 1.5rem;
+}
+
+.searching-image img {
+  width: 80%;
+  max-width: 400px;
+  margin-top: 1.5rem;
+  animation: fadeIn 1.5s ease-in;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

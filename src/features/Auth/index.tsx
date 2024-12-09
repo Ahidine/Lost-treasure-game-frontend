@@ -13,13 +13,14 @@ const Auth: React.FC = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { isAuthenticated, loading } = useSelector(
+  const { isAuthenticated, loading, error } = useSelector(
     (state: RootState) => state.user
   );
 
   if (isAuthenticated) {
     navigate("/dashboard");
   }
+
   const toggleForm = (e: React.FormEvent) => {
     setIsLogin(!isLogin);
     e.preventDefault();
@@ -36,6 +37,7 @@ const Auth: React.FC = () => {
     dispatch(register({ email, password, name }));
     navigate("/play");
   };
+
   if (loading) {
     return <LoadingPage />;
   }
@@ -44,6 +46,7 @@ const Auth: React.FC = () => {
     <div className="auth-container">
       <div className="auth-card">
         <h1>{isLogin ? "Connexion" : "Enregistrement"}</h1>
+
         {isLogin ? (
           <form onSubmit={handleLogin}>
             <div className="form-group">
@@ -102,6 +105,11 @@ const Auth: React.FC = () => {
             </button>
           </form>
         )}
+
+        {error && isLogin && (
+          <p className="error-message">Oops ! email ou password incorrect </p>
+        )}
+
         <p className="toggle-text" onClick={toggleForm}>
           {isLogin
             ? "Pas encore inscrit ? Créez un compte"

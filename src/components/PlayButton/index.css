@@ -23,3 +23,24 @@
   transform: scale(1.05);
   box-shadow: 0 0 15px #f8d568, inset 0 0 5px #f8d568;
 }
+
+@media (max-width: 1024px) {
+  .play-button {
+    font-size: 0.9rem;
+    padding: 12px 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .play-button {
+    font-size: 0.85rem;
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .play-button {
+    font-size: 0.8rem;
+    padding: 8px 20px;
+  }
+}

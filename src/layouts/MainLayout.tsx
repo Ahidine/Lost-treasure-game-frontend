@@ -6,11 +6,7 @@ type MainLayoutProps = {
 };
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
-  return (
-    <div className="main-layout">
-      <main className="content">{children}</main>
-    </div>
-  );
+  return <div className="main-layout">{children}</div>;
 };
 
 export default MainLayout;

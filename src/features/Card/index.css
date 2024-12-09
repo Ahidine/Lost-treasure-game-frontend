@@ -95,3 +95,13 @@
     opacity: 0.3;
   }
 }
+
+@media (max-width: 768px) {
+  .card .card-back.reveal-treasure {
+    animation: none;
+  }
+
+  .card .card-back.reveal-fail {
+    animation: none;
+  }
+}

@@ -7,7 +7,6 @@
   padding: 2rem;
   background: url("/src/assets/home-image.jpeg") no-repeat center center;
   background-size: cover;
-  min-height: 90vh;
   height: 100%;
   position: relative;
   overflow: hidden;
