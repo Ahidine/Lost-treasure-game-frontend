@@ -1,15 +1,15 @@
+options:
+  logsBucket: 'gs://losttreasre-build-logs'
+
 steps:
-  # Installer les dépendances
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
     dir: '.'
 
-  # Lancer les tests
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'test']
     dir: '.'
 
-  # Construire l'image Docker
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -17,13 +17,11 @@ steps:
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'
       - '.'
 
-  # Pousser l'image vers Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'
 
-  # Déployer sur GKE
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'bash'
     args:
