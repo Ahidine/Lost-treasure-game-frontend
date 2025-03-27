@@ -1,0 +1,17 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Release
+metadata:
+  name: dev-release
+  namespace: default
+spec:
+  images:
+    - image: europe-west1-docker.pkg.dev/losttreasre/lost-treasure-front/frontend:dev-latest
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Release
+metadata:
+  name: recette-release
+  namespace: default
+spec:
+  images:
+    - image: europe-west1-docker.pkg.dev/losttreasre/lost-treasure-front/frontend:recette-latest

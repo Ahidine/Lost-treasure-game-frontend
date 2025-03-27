@@ -18,13 +18,24 @@ steps:
       - 'push'
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'
 
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
+  - name: 'gcr.io/cloud-builders/gcloud'
     args:
-      - '-c'
-      - |
-        gcloud container clusters get-credentials lost-treasure-cluster --zone=europe-west1
-        kubectl set image deployment/frontend-deployment frontend=europe-west1-docker.pkg.dev/losttreasre/lost-treasure-front/frontend:$SHORT_SHA
+      - 'deploy'
+      - 'pipelines'
+      - 'run'
+      - '--pipeline=multi-environment-pipeline'
+      - '--project=losttreasre'
+      - '--region=europe-west1'
+      - '--release=dev-release'
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'deploy'
+      - 'pipelines'
+      - 'run'
+      - '--pipeline=multi-environment-pipeline'
+      - '--project=losttreasre'
+      - '--region=europe-west1'
+      - '--release=recette-release'
 
 images:
   - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'

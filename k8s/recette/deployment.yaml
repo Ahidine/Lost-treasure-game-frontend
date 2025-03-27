@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: default
+  namespace: recette
 spec:
   replicas: 2
   selector:
@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: europe-west1-docker.pkg.dev/losttreasre/lost-treasure-front/frontend:latest
+          image: europe-west1-docker.pkg.dev/losttreasre/lost-treasure-front/frontend:recette-latest
           ports:
             - containerPort: 80
