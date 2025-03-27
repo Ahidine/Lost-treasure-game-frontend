@@ -23,7 +23,7 @@ steps:
     args:
       - '-c'
       - |
-        gcloud container clusters get-credentials lost-treasure-cluster --zone=europe-west1-b
+        gcloud container clusters get-credentials lost-treasure-cluster --zone=europe-west1
         kubectl set image deployment/frontend-deployment frontend=europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA --namespace production
 
 images:
