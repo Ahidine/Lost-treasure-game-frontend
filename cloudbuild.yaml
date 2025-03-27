@@ -2,22 +2,26 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
+  # Installer les dépendances
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
     dir: '.'
 
+  # Construire l'image Docker pour l'environnement dev
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
-      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'
+      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:dev-$SHORT_SHA'
       - '.'
 
+  # Pousser l'image Docker pour l'environnement dev
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:$SHORT_SHA'
+      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:dev-$SHORT_SHA'
 
+  # Déploiement sur l'environnement dev avec Cloud Deploy
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'deploy'
@@ -27,6 +31,22 @@ steps:
       - '--project=losttreasre'
       - '--region=europe-west1'
       - '--release=dev-release'
+
+  # Construire l'image Docker pour l'environnement recette
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:recette-$SHORT_SHA'
+      - '.'
+
+  # Pousser l'image Docker pour l'environnement recette
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:recette-$SHORT_SHA'
+
+  # Déploiement sur l'environnement recette avec Cloud Deploy
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'deploy'
