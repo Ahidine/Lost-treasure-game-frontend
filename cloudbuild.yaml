@@ -1,6 +1,3 @@
-options:
-  logsBucket: 'gs://losttreasre-build-logs'
-
 steps:
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
