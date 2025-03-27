@@ -2,12 +2,12 @@ options:
   logging: CLOUD_LOGGING_ONLY
 
 steps:
-  # Installer les dépendances
+  # Étape 1: Installer les dépendances
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
     dir: '.'
 
-  # Construire l'image Docker pour l'environnement dev
+  # Étape 2: Construire l'image Docker pour l'environnement dev
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -15,24 +15,36 @@ steps:
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:dev-$SHORT_SHA'
       - '.'
 
-  # Pousser l'image Docker pour l'environnement dev
+  # Étape 3: Pousser l'image Docker vers Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:dev-$SHORT_SHA'
 
-  # Déploiement sur l'environnement dev avec Cloud Deploy
+  # Étape 4: Créer un release pour l'environnement dev
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'deploy'
-      - 'pipelines'
-      - 'run'
-      - '--pipeline=multi-environment-pipeline'
+      - 'releases'
+      - 'create'
+      - '--project=losttreasre'
+      - '--region=europe-west1'
+      - '--image=europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:dev-$SHORT_SHA'
+      - '--release=dev-release'
+      - '--delivery-pipeline=multi-environment-pipeline'
+      - '--target=dev'
+
+  # Étape 5: Appliquer le release pour l'environnement dev
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'deploy'
+      - 'releases'
+      - 'apply'
       - '--project=losttreasre'
       - '--region=europe-west1'
       - '--release=dev-release'
 
-  # Construire l'image Docker pour l'environnement recette
+  # Étape 6: Construire l'image Docker pour l'environnement recette
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
@@ -40,19 +52,31 @@ steps:
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:recette-$SHORT_SHA'
       - '.'
 
-  # Pousser l'image Docker pour l'environnement recette
+  # Étape 7: Pousser l'image Docker vers Google Container Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:recette-$SHORT_SHA'
 
-  # Déploiement sur l'environnement recette avec Cloud Deploy
+  # Étape 8: Créer un release pour l'environnement recette
   - name: 'gcr.io/cloud-builders/gcloud'
     args:
       - 'deploy'
-      - 'pipelines'
-      - 'run'
-      - '--pipeline=multi-environment-pipeline'
+      - 'releases'
+      - 'create'
+      - '--project=losttreasre'
+      - '--region=europe-west1'
+      - '--image=europe-west1-docker.pkg.dev/losttreasre/lost-treasure-game-front/frontend:recette-$SHORT_SHA'
+      - '--release=recette-release'
+      - '--delivery-pipeline=multi-environment-pipeline'
+      - '--target=recette'
+
+  # Étape 9: Appliquer le release pour l'environnement recette
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'deploy'
+      - 'releases'
+      - 'apply'
       - '--project=losttreasre'
       - '--region=europe-west1'
       - '--release=recette-release'
