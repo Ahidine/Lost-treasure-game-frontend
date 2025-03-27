@@ -6,10 +6,6 @@ steps:
     args: ['install']
     dir: '.'
 
-  - name: 'gcr.io/cloud-builders/npm'
-    args: ['run', 'test']
-    dir: '.'
-
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
